@@ -147,6 +147,11 @@ func (a *App) Setup() {
 		}
 
 		fc := FlagCategories{}
+    // Merge global flags into sub commands
+		for _, flag := range a.Flags {
+			fc = fc.AddFlag(flag.GetCategory(), flag)
+		}
+
 		for _, flag := range c.Flags {
 			fc = fc.AddFlag(flag.GetCategory(), flag)
 		}
